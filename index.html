@@ -7,11 +7,31 @@
 </head>
 <body>
     <script src="script.js"></script>
-    <div>
-        <h1></h1>
-        <p></p>
+    <style>
+        * {
+            background-color: lightgreen;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .main {
+            display: block;
+            margin-left: 10%;
+            margin-right: 10%;
+            text-align: center;
+        }
+        input, button {
+            border-radius: 30px;
+        }
+        button {
+            margin: 10px;
+            padding: 15px;
+        }
+    </style>
+    <div class="main">
+        <h1>How many people have your name in Brazil?</h1>
+        <br />
         <input type="text" name="username1" id="username1" />
-        <input type="submit" onclick="getData()">
+        <br />
+        <button onclick="getData()">Let's see!</button>
     </div>
     <div>
         <p id="data"></p>
