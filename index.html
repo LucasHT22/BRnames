@@ -13,6 +13,17 @@
             const data = await response.json();
             console.log(data);
         }
+        async function more() {
+            const username1 = document.getElementById('username1').value.toLowerCase();
+            const response1 = await fetch(`https://servicodados.ibge.gov.br/api/v2/censos/nomes/${username1}?groupBy=UF`)
+            const data1 = await response1.json();
+            console.log(data1);
+        }
+        async function ranking() {
+            const response2 = await fetch('https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking');
+            const data2 = await response2.json();
+            console.log(data2);
+        }
     </script>
     <style>
         * {
@@ -43,6 +54,8 @@
     <div>
         <p id="data"></p>
         <br />
+        <p id="ranking"></p>
+        <button onclick="more()">I want nerd statistics!</button>
     </div>
 </body>
 </html>
