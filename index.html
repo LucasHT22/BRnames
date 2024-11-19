@@ -8,10 +8,15 @@
 <body>
     <script>
         async function getData(){
+            var total = 0;
             const username1 = document.getElementById('username1').value.toLowerCase();
             const response = await fetch(`https://servicodados.ibge.gov.br/api/v2/censos/nomes/${username1}`)
             const data = await response.json();
-            console.log(data);
+            for (let x = 0; x < 9; x++) {
+                total += data[0]["res"][x]["frequencia"];
+                console.log(data[0]["res"][x]["frequencia"]);
+            }
+            console.log("Total: " + total);
             document.getElementById('data').innerHTML = "<h1>Here is your results!</h1> <br />" + data;
         }
         async function more() {
@@ -25,14 +30,22 @@
             const response2 = await fetch('https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking');
             const data2 = await response2.json();
             console.log(data2);
+            /*let text = "<table border='1'>"*/
+            for (let x = 0; x < 20; x++) {
+                console.log(data2[0]["res"][x]["ranking"] + " " + data2[0]["res"][x]["nome"] + " " + data2[0]["res"][x]["frequencia"]);
+                /*text += "<tr><td>" + data2[0]["res"][x]["ranking"] + "</td><td>" + data2[0]["res"][x]["nome"] + "</td><td>" + data2[0]["res"][x]["frequencia"] + "</td></tr> <br />";*/
+            }
+            /*text += "</table>"*/
+            document.getElementById('ranking').innerHTML = text;
             document.getElementById('ranking').innerHTML = data2;
         }
         ranking();
     </script>
     <style>
         * {
-            background-color: lightgreen;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1F3D3D;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #8FFFFF;
         }
         .main {
             display: block;
@@ -42,6 +55,7 @@
         }
         input, button {
             border-radius: 30px;
+            border-color: #8FFFFF;
         }
         button {
             margin: 10px;
