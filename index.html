@@ -32,7 +32,8 @@
             var nstate = 0;
             for (let y = 0; y < 27; y++) { 
                 nstate = data3[y]["localidade"];
-                const state = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${nstate}`);
+                /*const state = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${nstate}`);
+                const state0 = state["nome"];*/
                 console.log("In " + nstate + ", there's one " + username1 + " for each " + data3[y]["res"][0]["proporcao"] + " people." + " " + data3[y]["res"][0]["frequencia"] + "/" + data3[y]["res"][0]["populacao"])
                 document.getElementById('nerd').innerHTML += "In " + nstate + ", there's one <span id='high'>" + username1 + "</span> for each <span id='high'>" + data3[y]["res"][0]["proporcao"] + "</span> people."  + " " + data3[y]["res"][0]["frequencia"] + "/<span id='high'>" + data3[y]["res"][0]["populacao"] + "</span> <br />";
             }
