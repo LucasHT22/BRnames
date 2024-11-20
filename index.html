@@ -25,7 +25,7 @@
             const data1 = await response1.json();
             for (let x = 0; x < 9; x++) {
                 console.log(data1[0]["res"][x]["frequencia"] + "  " + data1[0]["res"][x]["periodo"]);
-                document.getElementById('decade').innerHTML += data1[0]["res"][x]["periodo"] + "  " + data1[0]["res"][x]["frequencia"] + "<br />";
+                document.getElementById('decade').innerHTML += data1[0]["res"][x]["periodo"] + "  <span id='high'>" + data1[0]["res"][x]["frequencia"] + "</span><br />";
             }
             const response3 = await fetch(`https://servicodados.ibge.gov.br/api/v2/censos/nomes/${username1}?groupBy=UF`)
             const data3 = await response3.json();
@@ -34,7 +34,7 @@
                 nstate = data3[y]["localidade"];
                 const state = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${nstate}`);
                 console.log("In " + nstate + ", there's one " + username1 + " for each " + data3[y]["res"][0]["proporcao"] + " people." + " " + data3[y]["res"][0]["frequencia"] + "/" + data3[y]["res"][0]["populacao"])
-                document.getElementById('nerd').innerHTML += "In " + nstate + ", there's one " + username1 + " for each " + data3[y]["res"][0]["proporcao"] + " people."  + " " + data3[y]["res"][0]["frequencia"] + "/" + data3[y]["res"][0]["populacao"] + " <br />";
+                document.getElementById('nerd').innerHTML += "In " + nstate + ", there's one <span id='high'>" + username1 + "</span> for each <span id='high'>" + data3[y]["res"][0]["proporcao"] + "</span> people."  + " " + data3[y]["res"][0]["frequencia"] + "/<span id='high'>" + data3[y]["res"][0]["populacao"] + "</span> <br />";
             }
             console.log(data3);
         }
@@ -64,6 +64,15 @@
             margin-right: 10%;
             text-align: center;
         }
+        .nerd {
+            margin-left: 10%;
+        }
+        #data {
+            font-size: xx-large;
+        }
+        #high {
+            color: yellow;
+        }
         input, button {
             border-radius: 30px;
             border-color: #8FFFFF;
@@ -71,6 +80,15 @@
         button {
             margin: 10px;
             padding: 15px;
+        }
+        table {
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+            text-align: center;
+        }
+        table, tr, td {
+            border: 1px solid #1F3D3D;
         }
     </style>
     <div class="main">
@@ -80,11 +98,13 @@
         <br />
         <button onclick="getData()">Let's see!</button>
     </div>
-    <div>
+    <div class="main">
         <p id="data"></p>
-        <br />
+        <h1>Top 20 most common brazilian names</h1>
         <p id="ranking"></p>
         <button onclick="more()">I want nerd statistics!</button>
+    </div>
+    <div class="nerd">
         <p id="nerd"></p>
         <p id="decade"></p>
     </div>
