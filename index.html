@@ -33,12 +33,13 @@
             for (let y = 0; y < 27; y++) { 
                 nstate = data3[y]["localidade"];
                 /*const state = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${nstate}`);
-                const state0 = state["nome"];*/
+                const state0 = state["nome"];
+                console.log(state0);*/
                 console.log("In " + nstate + ", there's one " + username1 + " for each " + data3[y]["res"][0]["proporcao"] + " people." + " " + data3[y]["res"][0]["frequencia"] + "/" + data3[y]["res"][0]["populacao"])
                 document.getElementById('nerd').innerHTML += "In " + nstate + ", there's one <span id='high'>" + username1 + "</span> for each <span id='high'>" + data3[y]["res"][0]["proporcao"] + "</span> people."  + " " + data3[y]["res"][0]["frequencia"] + "/<span id='high'>" + data3[y]["res"][0]["populacao"] + "</span> <br />";
             }
             console.log(data3);
-        }
+        } 
         async function ranking() {
             const response2 = await fetch('https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking');
             const data2 = await response2.json();
