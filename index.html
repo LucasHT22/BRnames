@@ -16,7 +16,7 @@
 
                 if (!response.ok) {
                     throw new Error(`Response status: ${response.status}`);
-                    document.getElementById('data').innerHTML = "<p> Sorry! We don't have data about " + username1 + " in Brazil :("
+                    document.getElementById('data').innerHTML = "<p> Sorry! An error has occurred. </p>"
                 }
 
                 const data = await response.json();
@@ -30,7 +30,7 @@
                 } else {
                     document.getElementById('data').innerHTML = "<p> Sorry! We don't have data about " + username1 + " in Brazil :("
                 }
-                
+
                 console.log(data);
 
             } catch (error) {
