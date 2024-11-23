@@ -10,6 +10,10 @@
         async function getData(){
             var total = 0;
 
+            document.getElementById('data').value = " ";
+            document.getElementById('nerd').value = " ";
+            document.getElementById('decade').value = " ";
+
             try {
                 const username1 = document.getElementById('username1').value.toLowerCase();
                 const response = await fetch(`https://servicodados.ibge.gov.br/api/v2/censos/nomes/${username1}`)
@@ -20,8 +24,8 @@
                 }
 
                 const data = await response.json();
-                for (let x = 0; x < 9; x++) {
-                    total += data[0]["res"][x]["frequencia"];
+                for (let i = 0; i < 9; i++) {
+                    total += data[0]["res"][i]["frequencia"];
                 }
 
                 console.log("Total: " + total);
@@ -41,20 +45,20 @@
             const username1 = document.getElementById('username1').value.toLowerCase();
             const response1 = await fetch(`https://servicodados.ibge.gov.br/api/v2/censos/nomes/${username1}`)
             const data1 = await response1.json();
-            for (let x = 0; x < 9; x++) {
-                console.log(data1[0]["res"][x]["frequencia"] + "  " + data1[0]["res"][x]["periodo"]);
-                document.getElementById('decade').innerHTML += data1[0]["res"][x]["periodo"] + "  <span id='high'>" + data1[0]["res"][x]["frequencia"] + "</span><br />";
+            for (let i = 0; i < 9; i++) {
+                console.log(data1[0]["res"][i]["frequencia"] + "  " + data1[0]["res"][i]["periodo"]);
+                document.getElementById('decade').innerHTML += data1[0]["res"][i]["periodo"] + "  <span id='high'>" + data1[0]["res"][i]["frequencia"] + "</span><br />";
             }
             const response3 = await fetch(`https://servicodados.ibge.gov.br/api/v2/censos/nomes/${username1}?groupBy=UF`)
             const data3 = await response3.json();
             var nstate = 0;
-            for (let y = 0; y < 27; y++) { 
+            for (let j = 0; j < 27; j++) { 
                 nstate = data3[y]["localidade"];
                 /*const state = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${nstate}`);
                 const state0 = state["nome"];
                 console.log(state0);*/
-                console.log("In " + nstate + ", there's one " + username1 + " for each " + data3[y]["res"][0]["proporcao"] + " people." + " " + data3[y]["res"][0]["frequencia"] + "/" + data3[y]["res"][0]["populacao"])
-                document.getElementById('nerd').innerHTML += "In " + nstate + ", there's one <span id='high'>" + username1 + "</span> for each <span id='high'>" + data3[y]["res"][0]["proporcao"] + "</span> people."  + " " + data3[y]["res"][0]["frequencia"] + "/<span id='high'>" + data3[y]["res"][0]["populacao"] + "</span> <br />";
+                console.log("In " + nstate + ", there's one " + username1 + " for each " + data3[j]["res"][0]["proporcao"] + " people." + " " + data3[j]["res"][0]["frequencia"] + "/" + data3[j]["res"][0]["populacao"])
+                document.getElementById('nerd').innerHTML += "In " + nstate + ", there's one <span id='high'>" + username1 + "</span> for each <span id='high'>" + data3[j]["res"][0]["proporcao"] + "</span> people."  + " " + data3[j]["res"][0]["frequencia"] + "/<span id='high'>" + data3[j]["res"][0]["populacao"] + "</span> <br />";
             }
             console.log(data3);
         } 
@@ -63,9 +67,9 @@
             const data2 = await response2.json();
             console.log(data2);
             let text = "<table border='1'>"
-            for (let x = 0; x < 20; x++) {
-                console.log(data2[0]["res"][x]["ranking"] + " " + data2[0]["res"][x]["nome"] + " " + data2[0]["res"][x]["frequencia"]);
-                text += "<tr>" + "<td>" + data2[0]["res"][x]["ranking"] + "</td>" + "<td>" + data2[0]["res"][x]["nome"] + "</td>" + "<td>" + data2[0]["res"][x]["frequencia"] + "</td>" + "</tr>";
+            for (let i = 0; i < 20; i++) {
+                console.log(data2[0]["res"][i]["ranking"] + " " + data2[0]["res"][i]["nome"] + " " + data2[0]["res"][i]["frequencia"]);
+                text += "<tr>" + "<td>" + data2[0]["res"][i]["ranking"] + "</td>" + "<td>" + data2[0]["res"][i]["nome"] + "</td>" + "<td>" + data2[0]["res"][i]["frequencia"] + "</td>" + "</tr>";
             }
             text += "</table>"
             document.getElementById('ranking').innerHTML = text;
