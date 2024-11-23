@@ -9,15 +9,33 @@
     <script>
         async function getData(){
             var total = 0;
-            const username1 = document.getElementById('username1').value.toLowerCase();
-            const response = await fetch(`https://servicodados.ibge.gov.br/api/v2/censos/nomes/${username1}`)
-            const data = await response.json();
-            for (let x = 0; x < 9; x++) {
-                total += data[0]["res"][x]["frequencia"];
+
+            try {
+                const username1 = document.getElementById('username1').value.toLowerCase();
+                const response = await fetch(`https://servicodados.ibge.gov.br/api/v2/censos/nomes/${username1}`)
+
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                    document.getElementById('data').innerHTML = "<p> Sorry! We don't have data about " + username1 + " in Brazil :("
+                }
+
+                const data = await response.json();
+                for (let x = 0; x < 9; x++) {
+                    total += data[0]["res"][x]["frequencia"];
+                }
+
+                console.log("Total: " + total);
+                if (total !== 0) {
+                    document.getElementById('data').innerHTML = "<h1>" + total + "</h1> <button onclick='more()'>I want nerd statistics!</button>";
+                } else {
+                    document.getElementById('data').innerHTML = "<p> Sorry! We don't have data about " + username1 + " in Brazil :("
+                }
+                
+                console.log(data);
+
+            } catch (error) {
+                console.error(error.message);
             }
-            console.log("Total: " + total);
-            document.getElementById('data').innerHTML = "<h1>" + total + "</h1> <button onclick='more()'>I want nerd statistics!</button>";
-            console.log(data);
         }
         async function more() {
             const username1 = document.getElementById('username1').value.toLowerCase();
