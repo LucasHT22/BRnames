@@ -53,7 +53,7 @@
             const data3 = await response3.json();
             var nstate = 0;
             for (let j = 0; j < 27; j++) { 
-                nstate = data3[y]["localidade"];
+                nstate = data3[j]["localidade"];
                 /*const state = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${nstate}`);
                 const state0 = state["nome"];
                 console.log(state0);*/
