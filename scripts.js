@@ -48,9 +48,11 @@ async function more() {
     const data3 = await response3.json();
 
     var nstate = 0;
+    var frq = 0;
     for (let j = 0; j < 27; j++) { 
         nstate = data3[j]["nome"];
-        document.getElementById('nerd').innerHTML += "In " + nstate + ", there's one <span id='high'>" + username1 + "</span> for each <span id='high'>" + data3[j]["prop"] + "</span> people."  + " " + data3[j]["freq"] + "/<span id='high'>" + data3[j]["populacao"] + "</span> <br />";
+        frq = data3[j]["populacao"] / data3[j][freq];
+        document.getElementById('nerd').innerHTML += "In " + nstate + ", there's one <span id='high'>" + username1 + "</span> for each <span id='high'>" + frq + "</span> people."  + " " + data3[j]["freq"] + "/<span id='high'>" + data3[j]["populacao"] + "</span> <br />";
     }
 } 
 async function ranking() {
