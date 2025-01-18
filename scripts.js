@@ -15,7 +15,7 @@ async function getData(){
         const data = await response.json();
 
         if (!Object.keys(data).length) {
-            document.getElementById('data').innerHTML = "<p> Sorry! We don't have data about " + username1 + "s in Brazil :(";
+            document.getElementById('data').innerHTML = "<p> Sorry " + username1 + "! We don't have data about your name in Brazil :(";
         } else {
             for (let i = 0; i < 9; i++) {
                 if (data[0]["res"][i] == null) {
